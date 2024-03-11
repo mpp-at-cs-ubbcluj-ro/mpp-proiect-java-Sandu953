@@ -35,17 +35,4 @@ public class Agentie extends Entity<Long>{
         Agentie agentie = (Agentie) o;
         return Objects.equals(username, agentie.username) && Objects.equals(password, agentie.password);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), username, password);
-    }
-
-    @Override
-    public String toString() {
-        return "Agentie{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }
