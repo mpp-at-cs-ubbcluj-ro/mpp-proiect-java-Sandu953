@@ -28,11 +28,9 @@ public class Agentie extends Entity<Long>{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Agentie agentie = (Agentie) o;
-        return Objects.equals(username, agentie.username) && Objects.equals(password, agentie.password);
+    public String toString() {
+        return "Agentie{" +
+                "username='" + username + '\'' +
+                '}';
     }
 }

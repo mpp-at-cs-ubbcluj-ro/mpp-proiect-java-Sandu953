@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.logging.log4j:log4j-plugins:3.0.0-beta2" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.apache.logging.log4j" artifactId="log4j-plugins" version="3.0.0-beta2" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-plugins/3.0.0-beta2/dc24089857163f36a6f3adb8b9036628def859c4/log4j-plugins-3.0.0-beta2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-plugins/3.0.0-beta2/af7810ee223a98ea01b02a912eb76ce006dd6b/log4j-plugins-3.0.0-beta2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
