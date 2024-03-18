@@ -8,12 +8,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 
-public class ExcursieRepo implements IRepository<Integer, Excursie> {
+public class ExcursieRepo implements IExcursieRepo{
     private JdbcUtils dbUtils;
 
     private static final Logger logger= LogManager.getLogger();
@@ -155,6 +156,35 @@ public class ExcursieRepo implements IRepository<Integer, Excursie> {
         return excursii;
     }
 
+        @Override
+        public Iterable<Excursie> findBeetwenHours(LocalTime ora1, LocalTime ora2) {
+            logger.traceEntry("finding excursie with hours {} and {} ",ora1, ora2);
+            Connection con=dbUtils.getConnection();
+            List<Excursie> excursii=new ArrayList<>();
+            try(PreparedStatement preStmt=con.prepareStatement("select * from Excursie where ora_plecare between ? and ?")){
+                preStmt.setTime(1,java.sql.Time.valueOf(ora1));
+                preStmt.setTime(2,java.sql.Time.valueOf(ora2));
+                try(ResultSet result=preStmt.executeQuery()) {
+                    while (result.next()) {
+                        int id = result.getInt("id");
+                        String obiectiv = result.getString("obiectiv");
+                        String firma_transport = result.getString("firma_transport");
+                        java.sql.Time ora_plecare = result.getTime("ora_plecare");
+                        int pret = result.getInt("pret");
+                        int numar_locuri = result.getInt("numar_locuri");
+                        Excursie ex = new Excursie(obiectiv, firma_transport, ora_plecare.toLocalTime(), pret, numar_locuri);
+                        ex.setId((long) id);
+                        excursii.add(ex);
+                    }
+                }
+            }catch (SQLException ex){
+                logger.error(ex);
+                System.out.println("Error DB "+ex);
+            }
+            logger.traceExit();
+            return excursii;
+        }
 
 
 }
+

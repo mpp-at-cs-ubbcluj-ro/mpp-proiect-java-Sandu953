@@ -5,23 +5,29 @@ import org.apache.logging.log4j.Logger;
 import ro.mpp2024.domain.Agentie;
 
 
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Properties;
 
 
-public class AgentieRepo implements IRepository<Integer,Agentie> {
+public class AgentieRepo implements IAgentieRepo{
     private JdbcUtils dbUtils;
+
+    private SecretKey secretKey;
 
     private static final Logger logger= LogManager.getLogger();
 
-    public AgentieRepo(Properties props){
+    public AgentieRepo(Properties props, SecretKey secretKey){
         logger.info("Initializing AgentieRepo with properties: {} ",props);
         dbUtils=new JdbcUtils(props);
+        this.secretKey = secretKey;
     }
 
     @Override
@@ -49,11 +55,13 @@ public class AgentieRepo implements IRepository<Integer,Agentie> {
         try(PreparedStatement preStmt=con.prepareStatement("insert into Agentie values (?,?,?)")){
             preStmt.setInt(1,   entity.getId().intValue());
             preStmt.setString(2,entity.getUsername());
-            preStmt.setString(3,entity.getPassword());
+            preStmt.setString(3,criptare(entity.getPassword(),secretKey));
             int result=preStmt.executeUpdate();
         }catch (SQLException ex){
             logger.error(ex);
             System.out.println("Error DB "+ex);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         logger.traceExit();
 
@@ -80,7 +88,7 @@ public class AgentieRepo implements IRepository<Integer,Agentie> {
         Connection con = dbUtils.getConnection();
         try(PreparedStatement preparedStatement=con.prepareStatement("update Agentie set username = ?, password = ? where id = ?")){
             preparedStatement.setString(1, entity.getUsername());
-            preparedStatement.setString(2, entity.getPassword());
+            preparedStatement.setString(2, criptare(entity.getPassword(), secretKey));
             preparedStatement.setInt(3, integer);
 
             int result = preparedStatement.executeUpdate();
@@ -88,6 +96,8 @@ public class AgentieRepo implements IRepository<Integer,Agentie> {
         }catch (SQLException ex){
             logger.error(ex);
             System.out.println("Error DB "+ ex);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         logger.traceExit();
     }
@@ -104,11 +114,14 @@ public class AgentieRepo implements IRepository<Integer,Agentie> {
                     int id = result.getInt("id");
                     String username = result.getString("username");
                     String password = result.getString("password");
-                    Agentie ag = new Agentie( username, password);
+
+                    Agentie ag = new Agentie( username, decriptare(password, secretKey));
                     ag.setId((long) id);
                     logger.traceExit();
                     return ag;
                 }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }catch (SQLException ex){
             logger.error(ex);
@@ -130,9 +143,11 @@ public class AgentieRepo implements IRepository<Integer,Agentie> {
                     int id = result.getInt("id");
                     String username = result.getString("username");
                     String password = result.getString("password");
-                    Agentie ag = new Agentie(username, password);
+                    Agentie ag = new Agentie(username, decriptare(password, secretKey));
                     agentii.add(ag);
                 }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
             logger.error(e);
@@ -143,5 +158,43 @@ public class AgentieRepo implements IRepository<Integer,Agentie> {
     }
 
 
+    @Override
+    public Iterable<Agentie> findByUsername(String username) {
+        Connection con=dbUtils.getConnection();
+        List<Agentie> agentii=new ArrayList<>();
+        try(PreparedStatement preStmt=con.prepareStatement("select * from Agentie where username=?")) {
+            preStmt.setString(1,username);
+            try(ResultSet result=preStmt.executeQuery()) {
+                while (result.next()) {
+                    int id = result.getInt("id");
+                    String username2 = result.getString("username");
+                    String password = result.getString("password");
+                    Agentie ag = new Agentie(username2, decriptare(password, secretKey));
+                    agentii.add(ag);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            logger.error(e);
+            System.out.println("Error DB "+e);
+        }
+        logger.traceExit();
+        return agentii;
+    }
+
+    public static String criptare(String text, SecretKey secretKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        byte[] textCriptat = cipher.doFinal(text.getBytes());
+        return Base64.getEncoder().encodeToString(textCriptat);
+    }
+
+    public static String decriptare(String textCriptat, SecretKey secretKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+        byte[] textDecriptat = cipher.doFinal(Base64.getDecoder().decode(textCriptat));
+        return new String(textDecriptat);
+    }
 
 }

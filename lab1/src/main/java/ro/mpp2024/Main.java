@@ -7,8 +7,11 @@ import ro.mpp2024.repository.AgentieRepo;
 import ro.mpp2024.repository.ExcursieRepo;
 import ro.mpp2024.repository.RezervareRepo;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalTime;
 import java.util.Properties;
 
@@ -16,7 +19,7 @@ import java.util.Properties;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
 
         Properties props=new Properties();
         try {
@@ -25,26 +28,28 @@ public class Main {
             System.out.println("Cannot find bd.config "+e);
         }
 
+        SecretKey secretKey = KeyGenerator.getInstance("AES").generateKey();
 
 
-//        AgentieRepo agentieRepo = new AgentieRepo(props);
-//        Agentie ag1 = new Agentie("A1", "12345");
-//        ag1.setId(1L);
-//        Agentie ag2 = new Agentie("A2", "12345");
-//        ag2.setId(2L);
-//        agentieRepo.save(ag1);
-//        agentieRepo.save(ag2);
-//        System.out.println("Toate agentiile din db");
-//        for(Agentie ag:agentieRepo.findAll())
-//            System.out.println(ag);
-//        System.out.println(agentieRepo.size());
-//        System.out.println(agentieRepo.findOne(1));
-//        agentieRepo.update(1,new Agentie("A3", "12345"));
-//        System.out.println("Update");
-//        for(Agentie ag:agentieRepo.findAll())
-//            System.out.println(ag);
-//        agentieRepo.delete(1);
-//        agentieRepo.delete(2);
+
+        AgentieRepo agentieRepo = new AgentieRepo(props, secretKey);
+        Agentie ag1 = new Agentie("A1", "12345");
+        ag1.setId(1L);
+        Agentie ag2 = new Agentie("A2", "12345");
+        ag2.setId(2L);
+        agentieRepo.save(ag1);
+        agentieRepo.save(ag2);
+        System.out.println("Toate agentiile din db");
+        for(Agentie ag:agentieRepo.findAll())
+            System.out.println(ag);
+        System.out.println(agentieRepo.size());
+        System.out.println(agentieRepo.findOne(1));
+        agentieRepo.update(1,new Agentie("A3", "12345"));
+        System.out.println("Update");
+        for(Agentie ag:agentieRepo.findAll())
+            System.out.println(ag);
+        agentieRepo.delete(1);
+        agentieRepo.delete(2);
 
         ExcursieRepo excursieRepo = new ExcursieRepo(props);
         LocalTime time = LocalTime.parse("12:00:00");
