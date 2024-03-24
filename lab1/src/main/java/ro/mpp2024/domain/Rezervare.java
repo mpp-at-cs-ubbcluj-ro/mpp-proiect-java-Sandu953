@@ -1,23 +1,23 @@
 package ro.mpp2024.domain;
 
-public class Rezervare extends Entity<Long>{
-    private Excursie excursie;
+public class Rezervare extends Entity<Long> {
+    private long excursie;
     private String numeClient;
     private String nrTelefon;
     private Integer nrLocuri;
 
-    public Rezervare(Excursie excursie, String numeClient, String nrTelefon, Integer nrLocuri) {
+    public Rezervare(long excursie, String numeClient, String nrTelefon, Integer nrLocuri) {
         this.excursie = excursie;
         this.numeClient = numeClient;
         this.nrTelefon = nrTelefon;
         this.nrLocuri = nrLocuri;
     }
 
-    public Excursie getExcursie() {
+    public long getExcursie() {
         return excursie;
     }
 
-    public void setExcursie(Excursie excursie) {
+    public void setExcursie(long excursie) {
         this.excursie = excursie;
     }
 

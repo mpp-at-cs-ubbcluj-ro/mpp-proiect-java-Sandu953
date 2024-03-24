@@ -42,9 +42,13 @@ public class Excursie extends Entity<Long> {
         this.oraPlecare = oraPlecare;
     }
 
-    public Integer getPret() { return pret; }
+    public Integer getPret() {
+        return pret;
+    }
 
-    public void setPret(Integer pret) { this.pret = pret; }
+    public void setPret(Integer pret) {
+        this.pret = pret;
+    }
 
     public Integer getNrLocuri() {
         return nrLocuri;

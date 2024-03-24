@@ -32,31 +32,31 @@ public class Main {
 
 
 
-        AgentieRepo agentieRepo = new AgentieRepo(props, secretKey);
-        Agentie ag1 = new Agentie("A1", "12345");
-        ag1.setId(1L);
-        Agentie ag2 = new Agentie("A2", "12345");
-        ag2.setId(2L);
-        agentieRepo.save(ag1);
-        agentieRepo.save(ag2);
-        System.out.println("Toate agentiile din db");
-        for(Agentie ag:agentieRepo.findAll())
-            System.out.println(ag);
-        System.out.println(agentieRepo.size());
-        System.out.println(agentieRepo.findOne(1));
-        agentieRepo.update(1,new Agentie("A3", "12345"));
-        System.out.println("Update");
-        for(Agentie ag:agentieRepo.findAll())
-            System.out.println(ag);
-        agentieRepo.delete(1);
-        agentieRepo.delete(2);
-
-        ExcursieRepo excursieRepo = new ExcursieRepo(props);
-        LocalTime time = LocalTime.parse("12:00:00");
-        Excursie ex1 = new Excursie("A1", "D1", time, 10, 10);
-        ex1.setId(1L);
-        Excursie ex2 = new Excursie("A2", "D2", time, 10, 10);
-        ex2.setId(2L);
+//        AgentieRepo agentieRepo = new AgentieRepo(props, secretKey);
+//        Agentie ag1 = new Agentie("A1", "12345");
+//        ag1.setId(1L);
+//        Agentie ag2 = new Agentie("A2", "12345");
+//        ag2.setId(2L);
+//        agentieRepo.save(ag1);
+//        agentieRepo.save(ag2);
+//        System.out.println("Toate agentiile din db");
+//        for(Agentie ag:agentieRepo.findAll())
+//            System.out.println(ag);
+//        System.out.println(agentieRepo.size());
+//        System.out.println(agentieRepo.findOne(1));
+//        agentieRepo.update(1,new Agentie("A3", "12345"));
+//        System.out.println("Update");
+//        for(Agentie ag:agentieRepo.findAll())
+//            System.out.println(ag);
+//        agentieRepo.delete(1);
+//        agentieRepo.delete(2);
+//
+//        ExcursieRepo excursieRepo = new ExcursieRepo(props);
+//        LocalTime time = LocalTime.parse("12:00:00");
+//        Excursie ex1 = new Excursie("A1", "D1", time, 10, 10);
+//        ex1.setId(1L);
+//        Excursie ex2 = new Excursie("A2", "D2", time, 10, 10);
+//        ex2.setId(2L);
 //        excursieRepo.save(ex1);
 //        excursieRepo.save(ex2);
 //        System.out.println("Toate excursiile din db");
@@ -73,22 +73,22 @@ public class Main {
 //            excursieRepo.delete(ex.getId().intValue());
 
 
-        RezervareRepo rezervareRepo = new RezervareRepo(props, excursieRepo);
-        Rezervare rez = new Rezervare( ex2, "Nume", "12345", 10);
-        rez.setId(1L);
-        rezervareRepo.save(rez);
-        Rezervare rez2 = new Rezervare( ex2, "Nume2", "12345", 10);
-        rez2.setId(2L);
-        rezervareRepo.save(rez2);
-        System.out.println("Toate rezervarile din db");
-        for(Rezervare re:rezervareRepo.findAll())
-            System.out.println(re);
-        System.out.println(rezervareRepo.size());
-        System.out.println(rezervareRepo.findOne(1));
-        rezervareRepo.update(1,new Rezervare( ex2, "Nume3", "12345", 10));
-        for(Rezervare re:rezervareRepo.findAll())
-            System.out.println(re);
-        rezervareRepo.delete(1);
-        rezervareRepo.delete(2);
+//        RezervareRepo rezervareRepo = new RezervareRepo(props, excursieRepo);
+//        Rezervare rez = new Rezervare( ex2, "Nume", "12345", 10);
+//        rez.setId(1L);
+//        rezervareRepo.save(rez);
+//        Rezervare rez2 = new Rezervare( ex2, "Nume2", "12345", 10);
+//        rez2.setId(2L);
+//        rezervareRepo.save(rez2);
+//        System.out.println("Toate rezervarile din db");
+//        for(Rezervare re:rezervareRepo.findAll())
+//            System.out.println(re);
+//        System.out.println(rezervareRepo.size());
+//        System.out.println(rezervareRepo.findOne(1));
+//        rezervareRepo.update(1,new Rezervare( ex2, "Nume3", "12345", 10));
+//        for(Rezervare re:rezervareRepo.findAll())
+//            System.out.println(re);
+//        rezervareRepo.delete(1);
+//        rezervareRepo.delete(2);
     }
 }

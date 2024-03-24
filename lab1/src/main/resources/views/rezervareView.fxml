@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="367.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.mpp2024.controller.RezervareController">
+   <children>
+      <TableView fx:id="tableView" layoutX="11.0" layoutY="64.0" prefHeight="277.0" prefWidth="426.0">
+        <columns>
+          <TableColumn fx:id="obiectiv" prefWidth="87.33332538604736" text="Obiectiv" />
+          <TableColumn fx:id="firma" prefWidth="110.00000762939453" text="Firma Transport" />
+            <TableColumn fx:id="ora" prefWidth="79.66667175292969" text="Ora Plecare" />
+            <TableColumn fx:id="pret" prefWidth="47.0" text="Pret" />
+            <TableColumn fx:id="nrLocuri" prefWidth="77.00003051757812" text="Locuri Libere" />
+        </columns>
+      </TableView>
+      <TextField fx:id="getObiectiv" layoutX="461.0" layoutY="212.0" prefHeight="25.0" prefWidth="149.0" promptText="Obiectiv" />
+      <ComboBox fx:id="getOra1" layoutX="464.0" layoutY="269.0" prefHeight="25.0" prefWidth="64.0" />
+      <ComboBox fx:id="getOra2" layoutX="545.0" layoutY="269.0" prefHeight="25.0" prefWidth="64.0" />
+      <Label layoutX="464.0" layoutY="245.0" text="Interval Orar:" />
+      <Button fx:id="btnCauta" layoutX="461.0" layoutY="313.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="25.0" prefWidth="149.0" text="Cauta" />
+      <TextField fx:id="getNume" layoutX="461.0" layoutY="66.0" promptText="Nume" />
+      <TextField fx:id="getTelefon" layoutX="461.0" layoutY="96.0" promptText="Telefon" />
+      <TextField fx:id="getLocuri" layoutX="461.0" layoutY="126.0" promptText="Locuri" />
+      <Button fx:id="btnRezerva" layoutX="461.0" onAction="#handleRezervare" layoutY="157.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Rezerva" />
+      <Button fx:id="btnLogout" layoutX="901.0" layoutY="14.0" mnemonicParsing="false" text="Logout" />
+      <TableView fx:id="tableViewRez" layoutX="629.0" layoutY="70.0" prefHeight="266.0" prefWidth="341.0">
+        <columns>
+          <TableColumn fx:id="firma2" prefWidth="106.0" text="Firma Transport" />
+          <TableColumn fx:id="ora2" prefWidth="71.0" text="Ora Plecare" />
+            <TableColumn fx:id="pret2" prefWidth="57.0" text="Pret" />
+            <TableColumn fx:id="locuri2" prefWidth="96.0" text="Locuri Libere" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

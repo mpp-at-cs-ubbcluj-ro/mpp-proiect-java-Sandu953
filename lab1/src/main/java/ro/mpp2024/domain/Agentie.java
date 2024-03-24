@@ -2,13 +2,11 @@ package ro.mpp2024.domain;
 
 import java.util.Objects;
 
-public class Agentie extends Entity<Long>{
+public class Agentie extends Entity<Long> {
     private String username;
-    private String password;
 
-    public Agentie(String username, String password) {
+    public Agentie(String username) {
         this.username = username;
-        this.password = password;
     }
 
     public String getUsername() {
@@ -17,14 +15,6 @@ public class Agentie extends Entity<Long>{
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Override
