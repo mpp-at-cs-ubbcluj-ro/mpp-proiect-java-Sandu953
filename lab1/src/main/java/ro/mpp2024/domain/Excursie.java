@@ -9,14 +9,18 @@ public class Excursie extends Entity<Long> {
     private Integer pret;
     private Integer nrLocuri;
 
-    public Excursie(String obiectivTuristic, String numeTransport, LocalTime oraPlecare, Integer pret, Integer nrLocuri) {
+    private Integer locuriLibere;
+
+    public Excursie(String obiectivTuristic, String numeTransport, LocalTime oraPlecare, Integer pret, Integer nrLocuri, Integer locuriLibere) {
         this.obiectivTuristic = obiectivTuristic;
         this.numeTransport = numeTransport;
         this.oraPlecare = oraPlecare;
-        this.nrLocuri = nrLocuri;
         this.pret = pret;
-
+        this.nrLocuri = nrLocuri;
+        this.locuriLibere = locuriLibere;
     }
+
+
 
     public String getObiectivTuristic() {
         return obiectivTuristic;
@@ -58,6 +62,14 @@ public class Excursie extends Entity<Long> {
         this.nrLocuri = nrLocuri;
     }
 
+    public Integer getLocuriLibere() {
+        return locuriLibere;
+    }
+
+    public void setLocuriLibere(Integer locuriLibere) {
+        this.locuriLibere = locuriLibere;
+    }
+
     @Override
     public String toString() {
         return "Excursie{" +
@@ -66,6 +78,7 @@ public class Excursie extends Entity<Long> {
                 ", oraPlecare=" + oraPlecare +
                 ", pret=" + pret +
                 ", nrLocuri=" + nrLocuri +
+                ", locuriLibere=" + locuriLibere +
                 '}';
     }
 }

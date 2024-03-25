@@ -63,14 +63,14 @@ public class RezervareController {
         firma.setCellValueFactory(new PropertyValueFactory<>("numeTransport"));
         ora.setCellValueFactory(new PropertyValueFactory<>("oraPlecare"));
         pret.setCellValueFactory(new PropertyValueFactory<>("pret"));
-        nrLocuri.setCellValueFactory(new PropertyValueFactory<>("nrLocuri"));
+        nrLocuri.setCellValueFactory(new PropertyValueFactory<>("locuriLibere"));
 
         tableViewRez.setItems(modelExcursiiRezervari);
 
         firma2.setCellValueFactory(new PropertyValueFactory<>("numeTransport"));
         ora2.setCellValueFactory(new PropertyValueFactory<>("oraPlecare"));
         pret2.setCellValueFactory(new PropertyValueFactory<>("pret"));
-        locuri2.setCellValueFactory(new PropertyValueFactory<>("nrLocuri"));
+        locuri2.setCellValueFactory(new PropertyValueFactory<>("locuriLibere"));
 
         tableViewRez.setRowFactory(tv -> new TableRow<Excursie>() {
             @Override
@@ -180,6 +180,9 @@ public class RezervareController {
             }
             serviceRezervare.addRezervare(excursie, getNume.getText(), getTelefon.getText(), Integer.parseInt(getLocuri.getText()));
             System.out.println(serviceExcursie.getFreeSeats(excursie.getId().intValue()));
+            modelExcursiiRezervari.clear();
+            modelExcursiiRezervari.setAll(StreamSupport.stream(serviceExcursie.getExcursiiBetweenHours(getObiectiv.getText(), LocalTime.of((Integer) getOra1.getValue(), 0), LocalTime.of((Integer) getOra2.getValue(), 0)).spliterator(),
+                    false).collect(Collectors.toList()));
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText("Success");
@@ -192,6 +195,12 @@ public class RezervareController {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
+    }
+
+
+    @FXML
+    public void handleLogout(ActionEvent actionEvent) {
+        btnLogout.getScene().getWindow().hide();
     }
 
 

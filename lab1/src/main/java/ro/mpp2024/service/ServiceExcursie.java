@@ -14,8 +14,8 @@ public class ServiceExcursie {
         this.excursieRepo = excursieRepo;
     }
 
-    public void addExcursie(Long id, String obiectiv, String firmaTransport, LocalTime oraPlecare, int nrLocuriDisponibile, int pret) {
-        Excursie ex = new Excursie(obiectiv, firmaTransport, oraPlecare, nrLocuriDisponibile, pret);
+    public void addExcursie(Long id, String obiectiv, String firmaTransport, LocalTime oraPlecare, int nrLocuriDisponibile, int pret, int locuriLibere) {
+        Excursie ex = new Excursie(obiectiv, firmaTransport, oraPlecare, nrLocuriDisponibile, pret, locuriLibere);
         ex.setId(id);
         excursieRepo.save(ex);
     }
@@ -32,8 +32,8 @@ public class ServiceExcursie {
         return excursieRepo.findAll();
     }
 
-    public void updateExcursie(Long id, String obiectiv, String firmaTransport, LocalTime oraPlecare, int nrLocuriDisponibile, int pret) {
-        Excursie ex = new Excursie(obiectiv, firmaTransport, oraPlecare, nrLocuriDisponibile, pret);
+    public void updateExcursie(Long id, String obiectiv, String firmaTransport, LocalTime oraPlecare, int nrLocuriDisponibile, int pret, int locuriLibere) {
+        Excursie ex = new Excursie(obiectiv, firmaTransport, oraPlecare, nrLocuriDisponibile, pret, locuriLibere);
         ex.setId(id);
         excursieRepo.update(id.intValue(), ex);
     }
