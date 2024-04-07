@@ -5,6 +5,27 @@
       <module fileurl="file://$PROJECT_DIR$/lab1.iml" filepath="$PROJECT_DIR$/lab1.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lab1.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lab1.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lab1.test.iml" filepath="$PROJECT_DIR$/.idea/modules/lab1.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lab7.iml" filepath="$PROJECT_DIR$/lab7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/lab7.Client.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/lab7.Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/lab7.Client.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/lab7.Client.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/lab7.Client.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/lab7.Client.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Model/lab7.Model.iml" filepath="$PROJECT_DIR$/.idea/modules/Model/lab7.Model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Model/lab7.Model.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Model/lab7.Model.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Model/lab7.Model.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Model/lab7.Model.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Networking/lab7.Networking.iml" filepath="$PROJECT_DIR$/.idea/modules/Networking/lab7.Networking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Networking/lab7.Networking.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Networking/lab7.Networking.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Networking/lab7.Networking.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Networking/lab7.Networking.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Persistence/lab7.Persistence.iml" filepath="$PROJECT_DIR$/.idea/modules/Persistence/lab7.Persistence.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Persistence/lab7.Persistence.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Persistence/lab7.Persistence.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Persistence/lab7.Persistence.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Persistence/lab7.Persistence.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Server/lab7.Server.iml" filepath="$PROJECT_DIR$/.idea/modules/Server/lab7.Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Server/lab7.Server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Server/lab7.Server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Server/lab7.Server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Server/lab7.Server.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Services/lab7.Services.iml" filepath="$PROJECT_DIR$/.idea/modules/Services/lab7.Services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Services/lab7.Services.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Services/lab7.Services.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Services/lab7.Services.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Services/lab7.Services.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lab7.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lab7.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lab7.test.iml" filepath="$PROJECT_DIR$/.idea/modules/lab7.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/mpp-proiect-java-Sandu953.iml" filepath="$PROJECT_DIR$/.idea/mpp-proiect-java-Sandu953.iml" />
     </modules>
   </component>

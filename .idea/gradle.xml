@@ -13,6 +13,22 @@
           </set>
         </option>
       </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/lab7" />
+        <option name="gradleHome" value="" />
+        <option name="gradleJvm" value="18" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/lab7" />
+            <option value="$PROJECT_DIR$/lab7/Client" />
+            <option value="$PROJECT_DIR$/lab7/Model" />
+            <option value="$PROJECT_DIR$/lab7/Networking" />
+            <option value="$PROJECT_DIR$/lab7/Persistence" />
+            <option value="$PROJECT_DIR$/lab7/Server" />
+            <option value="$PROJECT_DIR$/lab7/Services" />
+          </set>
+        </option>
+      </GradleProjectSettings>
     </option>
   </component>
 </project>

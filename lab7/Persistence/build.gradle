@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group = 'ro.mpp2024'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation project (':Model')
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    runtimeOnly group: 'org.xerial', name: 'sqlite-jdbc', version: '3.16.1'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+
+    implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
+
+    //testImplementation platform('org.junit:junit-bom:5.9.1')
+
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '3.0.0-beta2'
+    //runtimeOnly group: 'org.xerial', name: 'sqlite-jdbc', version: '3.36.0.3'
+
+}
+
+//test {
+//    useJUnitPlatform()
+//}

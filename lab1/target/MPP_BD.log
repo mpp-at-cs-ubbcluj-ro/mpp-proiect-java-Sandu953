@@ -2906,3 +2906,23 @@
 25 mar. 2024 17:32:12,681 INFO  ro.mpp2024.repository.JdbcUtils 30 getNewConnection - user: null
 25 mar. 2024 17:32:12,681 INFO  ro.mpp2024.repository.JdbcUtils 31 getNewConnection - pass: null
 25 mar. 2024 17:32:12,683 TRACE ro.mpp2024.repository.JdbcUtils 56 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@64a47dbf)
+31 mar. 2024 22:58:44,764 INFO  ro.mpp2024.repository.ExcursieRepo 23 <init> - Initializing ExcursieRepo with properties: {jdbc.url=jdbc:sqlite:C:/Users/probook/Desktop/EXAMEN MAP/mpp-proiect-java-Sandu953/FirmaExcursie.db} 
+31 mar. 2024 22:58:44,821 INFO  ro.mpp2024.repository.AgentieRepo 29 <init> - Initializing AgentieRepo with properties: {jdbc.url=jdbc:sqlite:C:/Users/probook/Desktop/EXAMEN MAP/mpp-proiect-java-Sandu953/FirmaExcursie.db} 
+31 mar. 2024 22:58:44,825 INFO  ro.mpp2024.repository.RezervareRepo 25 <init> - Initializing RezervareRepo with properties: {jdbc.url=jdbc:sqlite:C:/Users/probook/Desktop/EXAMEN MAP/mpp-proiect-java-Sandu953/FirmaExcursie.db} 
+31 mar. 2024 22:58:44,833 TRACE ro.mpp2024.repository.AgentieRepo 73 save - Enter saving agentie admin 
+31 mar. 2024 22:58:44,833 TRACE ro.mpp2024.repository.JdbcUtils 47 getConnection - Enter
+31 mar. 2024 22:58:44,834 TRACE ro.mpp2024.repository.JdbcUtils 24 getNewConnection - Enter
+31 mar. 2024 22:58:44,835 INFO  ro.mpp2024.repository.JdbcUtils 29 getNewConnection - trying to connect to database ... jdbc:sqlite:C:/Users/probook/Desktop/EXAMEN MAP/mpp-proiect-java-Sandu953/FirmaExcursie.db
+31 mar. 2024 22:58:44,836 INFO  ro.mpp2024.repository.JdbcUtils 30 getNewConnection - user: null
+31 mar. 2024 22:58:44,837 INFO  ro.mpp2024.repository.JdbcUtils 31 getNewConnection - pass: null
+31 mar. 2024 22:58:45,099 TRACE ro.mpp2024.repository.JdbcUtils 56 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@37019770)
+31 mar. 2024 22:58:45,122 TRACE ro.mpp2024.repository.AgentieRepo 85 save - Exit
+31 mar. 2024 22:58:51,847 TRACE ro.mpp2024.repository.JdbcUtils 47 getConnection - Enter
+31 mar. 2024 22:58:51,848 TRACE ro.mpp2024.repository.JdbcUtils 56 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@37019770)
+31 mar. 2024 22:58:51,931 TRACE ro.mpp2024.repository.JdbcUtils 47 getConnection - Enter
+31 mar. 2024 22:58:51,931 TRACE ro.mpp2024.repository.JdbcUtils 24 getNewConnection - Enter
+31 mar. 2024 22:58:51,931 INFO  ro.mpp2024.repository.JdbcUtils 29 getNewConnection - trying to connect to database ... jdbc:sqlite:C:/Users/probook/Desktop/EXAMEN MAP/mpp-proiect-java-Sandu953/FirmaExcursie.db
+31 mar. 2024 22:58:51,932 INFO  ro.mpp2024.repository.JdbcUtils 30 getNewConnection - user: null
+31 mar. 2024 22:58:51,932 INFO  ro.mpp2024.repository.JdbcUtils 31 getNewConnection - pass: null
+31 mar. 2024 22:58:51,934 TRACE ro.mpp2024.repository.JdbcUtils 56 getConnection - Exit with(org.sqlite.jdbc4.JDBC4Connection@5ac89439)
+31 mar. 2024 22:58:51,940 TRACE ro.mpp2024.repository.ExcursieRepo 156 findAll - Exit

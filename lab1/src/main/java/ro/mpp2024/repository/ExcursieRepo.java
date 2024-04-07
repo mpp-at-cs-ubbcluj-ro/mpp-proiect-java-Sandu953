@@ -99,36 +99,6 @@ public class ExcursieRepo implements IExcursieRepo {
         logger.traceExit();
     }
 
-//    @Override
-//    public Excursie findOne(Integer integer) {
-//        logger.traceEntry("finding excursie with id {} ", integer);
-//        Connection con = dbUtils.getConnection();
-//
-//        try (PreparedStatement preStmt = con.prepareStatement("select * from Excursie where id=?")) {
-//            preStmt.setInt(1, integer);
-//            try (ResultSet result = preStmt.executeQuery()) {
-//                if (result.next()) {
-//                    int id = result.getInt("id");
-//                    String obiectiv = result.getString("obiectiv");
-//                    String firma_transport = result.getString("firma_transport");
-//                    java.sql.Time ora_plecare = result.getTime("ora_plecare");
-//                    int pret = result.getInt("pret");
-//                    int numar_locuri = result.getInt("numar_locuri");
-//                    Excursie ex = new Excursie(obiectiv, firma_transport, ora_plecare.toLocalTime(), pret, numar_locuri);
-//                    ex.setId((long) id);
-//                    logger.traceExit();
-//                    return ex;
-//                }
-//            }
-//        } catch (SQLException ex) {
-//            logger.error(ex);
-//            System.out.println("Error DB " + ex);
-//        }
-//        logger.traceExit("No excursie found with id {}", integer);
-//
-//        return null;
-//    }
-
     @Override
     public Excursie findOne(Integer integer) {
         logger.traceEntry("finding excursie with id {} ", integer);
@@ -159,33 +129,6 @@ public class ExcursieRepo implements IExcursieRepo {
 
         return null;
     }
-
-//    @Override
-//    public Iterable<Excursie> findAll() {
-//        //logger.();
-//        Connection con = dbUtils.getConnection();
-//        List<Excursie> excursii = new ArrayList<>();
-//        try (PreparedStatement preStmt = con.prepareStatement("select * from Excursie")) {
-//            try (ResultSet result = preStmt.executeQuery()) {
-//                while (result.next()) {
-//                    int id = result.getInt("id");
-//                    String obiectiv = result.getString("obiectiv");
-//                    String firma_transport = result.getString("firma_transport");
-//                    java.sql.Time ora_plecare = result.getTime("ora_plecare");
-//                    int pret = result.getInt("pret");
-//                    int numar_locuri = result.getInt("numar_locuri");
-//                    Excursie ex = new Excursie(obiectiv, firma_transport, ora_plecare.toLocalTime(), pret, numar_locuri);
-//                    ex.setId((long) id);
-//                    excursii.add(ex);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            logger.error(e);
-//            System.out.println("Error DB " + e);
-//        }
-//        logger.traceExit();
-//        return excursii;
-//    }
 
     @Override
     public Iterable<Excursie> findAll() {
@@ -304,11 +247,11 @@ public class ExcursieRepo implements IExcursieRepo {
             logger.error(ex);
             System.out.println("Error DB " + ex);
         } finally {
-            con.close(); // Închide conexiunea aici pentru a te asigura că este eliberată
+            con.close();
         }
 
         logger.traceExit("No excursie found with id {}", id);
-        return nr;
+        return 0;
     }
 }
 

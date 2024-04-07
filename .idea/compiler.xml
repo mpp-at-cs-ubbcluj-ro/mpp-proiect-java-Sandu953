@@ -5,6 +5,27 @@
       <module name="lab1" target="18" />
       <module name="lab1.main" target="18" />
       <module name="lab1.test" target="18" />
+      <module name="lab7" target="18" />
+      <module name="lab7.Client" target="18" />
+      <module name="lab7.Client.main" target="18" />
+      <module name="lab7.Client.test" target="18" />
+      <module name="lab7.main" target="18" />
+      <module name="lab7.Model" target="18" />
+      <module name="lab7.Model.main" target="18" />
+      <module name="lab7.Model.test" target="18" />
+      <module name="lab7.Networking" target="18" />
+      <module name="lab7.Networking.main" target="18" />
+      <module name="lab7.Networking.test" target="18" />
+      <module name="lab7.Persistence" target="18" />
+      <module name="lab7.Persistence.main" target="18" />
+      <module name="lab7.Persistence.test" target="18" />
+      <module name="lab7.Server" target="18" />
+      <module name="lab7.Server.main" target="18" />
+      <module name="lab7.Server.test" target="18" />
+      <module name="lab7.Services" target="18" />
+      <module name="lab7.Services.main" target="18" />
+      <module name="lab7.Services.test" target="18" />
+      <module name="lab7.test" target="18" />
     </bytecodeTargetLevel>
   </component>
 </project>

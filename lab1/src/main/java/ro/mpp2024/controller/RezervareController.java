@@ -33,7 +33,6 @@ public class RezervareController {
     public TableColumn<Excursie, LocalTime> ora;
     public TableColumn<Excursie, Integer> pret;
     public TableColumn<Excursie, Integer> nrLocuri;
-
     public TableColumn<Excursie, Integer> locuri2;
     public TableColumn<Excursie, Integer> pret2;
     public TableColumn<Excursie, LocalTime> ora2;
@@ -53,7 +52,6 @@ public class RezervareController {
 
     ObservableList<Excursie> modelExcursii = FXCollections.observableArrayList();
     ObservableList<Excursie> modelExcursiiRezervari = FXCollections.observableArrayList();
-
 
     @FXML
     public void initialize() {
@@ -97,8 +95,6 @@ public class RezervareController {
         });
 
     }
-
-
     public void initModelExcursii() {
         Iterable<Excursie> excursii = serviceExcursie.getAllExcursii();
         List<Excursie> excursiiList = new ArrayList<>();
@@ -108,8 +104,6 @@ public class RezervareController {
         modelExcursii.setAll(excursiiList);
 
     }
-
-
     public void setCombo1() {
         getOra1.getItems().removeAll();
 
@@ -117,7 +111,6 @@ public class RezervareController {
             getOra1.getItems().add(i);
         }
     }
-
     private void setCombo2() {
         getOra1.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null) {
@@ -129,7 +122,6 @@ public class RezervareController {
             }
         });
     }
-
     @FXML
     private void handleSearch(ActionEvent actionEvent) {
         if (!getObiectiv.getText().isEmpty() && getOra1.getValue() != null && getOra2.getValue() != null) {
@@ -148,7 +140,6 @@ public class RezervareController {
             alert.showAndWait();
         }
     }
-
     @FXML
     public void handleRezervare(ActionEvent actionEvent) {
         if (getNume.getText().isEmpty() || getTelefon.getText().isEmpty() || getLocuri.getText().isEmpty()) {
@@ -196,12 +187,8 @@ public class RezervareController {
             alert.showAndWait();
         }
     }
-
-
     @FXML
     public void handleLogout(ActionEvent actionEvent) {
         btnLogout.getScene().getWindow().hide();
     }
-
-
 }

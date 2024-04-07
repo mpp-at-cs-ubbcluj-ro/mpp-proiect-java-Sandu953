@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group = 'ro.mpp2024'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(path: ':Services')
+    implementation project(path: ':Model')
+    implementation project(path: ':Persistence')
+    implementation project(path: ':Networking')
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
