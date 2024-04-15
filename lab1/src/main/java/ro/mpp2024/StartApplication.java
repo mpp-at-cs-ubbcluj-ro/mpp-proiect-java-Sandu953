@@ -43,7 +43,7 @@ public class StartApplication extends Application {
         this.serviceExcursie = new ServiceExcursie(excursieRepo);
         this.serviceRezervare = new ServiceRezervare(new RezervareRepo(props, excursieRepo));
 
-        //serviceAgentie.saveAgentie("admin","1234");
+        //serviceAgentie.saveAgentie("test","1234");
 //        serviceExcursie.addExcursie(1L,"Gradina Botanica","CTP", LocalTime.parse("12:00:00"), 100, 10);
 //        serviceExcursie.addExcursie(2L,"Gradina Botanica","CTP", LocalTime.parse("13:00:00"), 100, 10);
 //        serviceExcursie.addExcursie(3L,"Gradina Botanica","CTP", LocalTime.parse("14:00:00"), 100, 10);

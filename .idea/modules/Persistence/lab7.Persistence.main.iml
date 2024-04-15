@@ -10,6 +10,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="lab7.Model.main" />
+    <orderEntry type="module" module-name="lab7.main" />
     <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-core:3.0.0-beta2" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-api:3.0.0-beta2" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:guava:31.0.1-jre" level="project" />

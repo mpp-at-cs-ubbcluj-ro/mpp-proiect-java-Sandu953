@@ -3,6 +3,8 @@ package ro.mpp2024.dto;
 import java.io.Serializable;
 
 public class RezervareDTO implements Serializable {
+
+    private long id;
     private long idExcursie;
     private String numeClient;
     private String nrTelefon;
@@ -15,7 +17,13 @@ public class RezervareDTO implements Serializable {
         this.nrBilete = nrBilete;
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public long getIdExcursie() {
         return idExcursie;

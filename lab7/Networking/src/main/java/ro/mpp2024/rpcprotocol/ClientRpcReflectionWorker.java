@@ -1,9 +1,12 @@
 package ro.mpp2024.rpcprotocol;
 
 
+import ro.mpp2024.*;
 import ro.mpp2024.Exception;
-import ro.mpp2024.IObserver;
-import ro.mpp2024.IServices;
+import ro.mpp2024.dto.AgentieDTO;
+import ro.mpp2024.dto.CautareDTO;
+import ro.mpp2024.dto.DTOUtils;
+import ro.mpp2024.dto.RezervareDTO;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,6 +14,8 @@ import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
+import java.sql.SQLException;
+import java.time.LocalTime;
 
 
 public class ClientRpcReflectionWorker implements Runnable, IObserver {
@@ -36,6 +41,7 @@ public class ClientRpcReflectionWorker implements Runnable, IObserver {
     public void run() {
         while(connected){
             try {
+                //System.out.println(input.readObject());
                 Object request=input.readObject();
                 Response response=handleRequest((Request)request);
                 if (response!=null){
@@ -105,32 +111,66 @@ public class ClientRpcReflectionWorker implements Runnable, IObserver {
         return response;
     }
 
-//    private Response handleLOGIN(Request request){
-//        System.out.println("Login request ..."+request.type());
-//        UserDTO udto=(UserDTO)request.data();
-//        User user=DTOUtils.getFromDTO(udto);
-//        try {
-//            server.login(user, this);
-//            return okResponse;
-//        } catch (ChatException e) {
-//            connected=false;
-//            return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
-//        }
-//    }
+    private Response handleLOGIN(Request request) {
+        System.out.println("Login request ..." + request.type());
+        AgentieDTO udto = (AgentieDTO) request.data();
+        try {
+            if(!server.handleLogin(udto.getUser(), udto.getPass(), this)) throw new Exception("Wrong username or password");
+            return okResponse;
+        } catch (Exception e) {
+            connected = false;
+            return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
+        }
+    }
 
-//    private Response handleLOGOUT(Request request){
-//        System.out.println("Logout request...");
-//        UserDTO udto=(UserDTO)request.data();
-//        User user=DTOUtils.getFromDTO(udto);
-//        try {
-//            server.logout(user, this);
-//            connected=false;
-//            return okResponse;
-//
-//        } catch (ChatException e) {
-//            return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
-//        }
-//    }
+
+    public void handleGET_EXCURSII(Request request) throws Exception {
+        Response resp = new Response.Builder().type(ResponseType.EXCURSII).data(server.getAllExcursii()).build();
+        try {
+            sendResponse(resp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleGET_FREE_SEATS(Request request) throws Exception, SQLException {
+        int id = (int) request.data();
+        Response resp = new Response.Builder().type(ResponseType.OK).data(server.getFreeSeats(id)).build();
+        try {
+            sendResponse(resp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleGET_EXCURSII_ORE(Request request) throws Exception {
+        CautareDTO cautareDTO = (CautareDTO) request.data();
+        LocalTime ora1 = cautareDTO.getOra1();
+        LocalTime ora2 = cautareDTO.getOra2();
+        String obiectiv = cautareDTO.getObiectiv();
+        Response resp = new Response.Builder().type(ResponseType.EXCURSII_ORE).data(server.getExcursiiBetweenHours(obiectiv,ora1, ora2)).build();
+        try {
+            sendResponse(resp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Response handleLOGOUT(Request request){
+        System.out.println("Logout request...");
+        AgentieDTO udto=(AgentieDTO) request.data();
+        Agentie user= DTOUtils.getFromDTO(udto);
+        System.out.println(user.getId());
+        try {
+
+            server.logout(user, this);
+            connected=false;
+            return okResponse;
+
+        } catch (Exception e) {
+            return new Response.Builder().type(ResponseType.ERROR).data(e.getMessage()).build();
+        }
+    }
 
     private void sendResponse(Response response) throws IOException{
         System.out.println("sending response "+response);
@@ -140,8 +180,38 @@ public class ClientRpcReflectionWorker implements Runnable, IObserver {
         }
     }
 
+    public void handleADD_REZ(Request request) throws Exception {
+        RezervareDTO rdto = (RezervareDTO) request.data();
+        Rezervare rezervare = DTOUtils.getFromDTO(rdto);
+        System.out.println("ADD_REZ handle response!!!");
+        server.addRezervare(rdto.getId(), rezervare.getExcursie(), rezervare.getNumeClient(), rezervare.getNrTelefon(), rezervare.getNrLocuri());
+        System.out.println("ADD_REZ h 222 response!!!");
+        Response resp = new Response.Builder().type(ResponseType.ADDED_REZERVATION).build();
+        try {
+            sendResponse(resp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleGET_ID(Request request) throws Exception {
+//        System.out.println("UPDATE response!!!");
+        AgentieDTO udto = (AgentieDTO) request.data();
+        Response resp = new Response.Builder().type(ResponseType.OK).data(server.getId(udto.getUser(), udto.getPass())).build();
+        try {
+            sendResponse(resp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void rezervationMade() throws Exception {
-
+        System.out.println("ADD_REZ response!!!");
+        Response resp=new Response.Builder().type(ResponseType.ADDED_REZERVATION).build();
+        try {
+            sendResponse(resp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

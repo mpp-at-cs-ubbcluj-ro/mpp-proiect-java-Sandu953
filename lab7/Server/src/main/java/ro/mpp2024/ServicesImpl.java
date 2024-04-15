@@ -26,8 +26,10 @@ public class ServicesImpl implements IServices {
         Agentie agentie;
         agentie = AgentieRepo.findBy(username, password);
         if (agentie != null) {
+            System.out.println(agentie.getId());
             if (loggedClients.get(agentie.getId()) != null)
                 return false;
+            System.out.println(agentie.getId());
             loggedClients.put(agentie.getId(), client);
 
         } else
@@ -35,8 +37,17 @@ public class ServicesImpl implements IServices {
         return agentieRepo.loginByUsernamePassword(username, password);
     }
 
+
+    public long getId(String username, String password) {
+        Agentie ag = AgentieRepo.findBy(username, password);
+        return ag.getId();
+    }
+
     public synchronized void logout(Agentie user, IObserver client) throws Exception {
-        IObserver localClient = loggedClients.remove(user.getId());
+        Agentie ag = AgentieRepo.findByUser(user.getUsername());
+        if(ag == null)
+            throw new Exception("User " + user.getId() + " is not logged in.");
+        IObserver localClient = loggedClients.remove(ag.getId());
         if (localClient == null)
             throw new Exception("User " + user.getId() + " is not logged in.");
     }
@@ -58,11 +69,12 @@ public class ServicesImpl implements IServices {
     }
 
     @Override
-    public synchronized void addRezervare(Excursie ex, String nume, String telefon, int bilet) {
+    public synchronized void addRezervare(long id,long ex, String nume, String telefon, int bilet) {
         try{
-            Rezervare rez = new Rezervare(ex.id, nume, telefon, bilet);
+            Rezervare rez = new Rezervare(ex, nume, telefon, bilet);
             rezervareRepo.save(rez);
-            notifyRezervare();
+            System.out.println("Notifying");
+            notifyRezervare(id);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -70,14 +82,15 @@ public class ServicesImpl implements IServices {
 
     private final int defaultThreadsNo = 5;
 
-    private void notifyRezervare() throws Exception {
-        Iterable<Agentie> agenties = agentieRepo.findAll();
-        System.out.println("Logged " + agenties);
+    private void notifyRezervare(long id) throws Exception {
+//        Iterable<Agentie> agenties = agentieRepo.findAll();
+//        System.out.println("Logged " + agenties);
 
         ExecutorService executor = Executors.newFixedThreadPool(defaultThreadsNo);
-        for (Agentie ag : agenties) {
-            IObserver chatClient = loggedClients.get(ag.getId());
-            if (chatClient != null)
+        for (Map.Entry<Long, IObserver> entry : loggedClients.entrySet()) {
+            System.out.println("AAA"+ entry.getKey());
+            IObserver chatClient = loggedClients.get(entry.getKey());
+            if (chatClient != null && entry.getKey() != id)
                 executor.execute(() -> {
                     try {
                         //System.out.println("Notifying [" + ag.getId()+ "] friend ["+user.getId()+"] logged in.");
@@ -87,5 +100,6 @@ public class ServicesImpl implements IServices {
                     }
                 });
         }
+        executor.shutdown();
     }
 }

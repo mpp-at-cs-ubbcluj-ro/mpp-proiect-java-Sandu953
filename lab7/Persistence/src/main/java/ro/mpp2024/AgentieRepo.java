@@ -157,6 +157,7 @@ public class AgentieRepo implements IAgentieRepo {
                     String username = result.getString("username");
                     String password = result.getString("password");
                     Agentie ag = new Agentie(username);
+                    ag.setId((long) id);
                     agentii.add(ag);
                 }
             } catch (Exception e) {
@@ -206,8 +207,33 @@ public class AgentieRepo implements IAgentieRepo {
                     String username2 = result.getString("username");
                     String password2 = result.getString("password");
                     if (hash(password).equals(password2)) {
-                        return new Agentie(username2);
+                        Agentie ag = new Agentie(username2);
+                        ag.setId((long) id);
+                        return ag;
                     }
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException e) {
+            logger.error(e);
+            System.out.println("Error DB " + e);
+        }
+        logger.traceExit();
+        return null;
+    }
+
+    public static Agentie findByUser(String username) {
+        Connection con = dbUtils.getConnection();
+        try (PreparedStatement preStmt = con.prepareStatement("select * from Agentie where username=?")) {
+            preStmt.setString(1, username);
+            try (ResultSet result = preStmt.executeQuery()) {
+                while (result.next()) {
+                    int id = result.getInt("id");
+                    String username2 = result.getString("username");
+                    Agentie ag = new Agentie(username2);
+                    ag.setId((long) id);
+                    return ag;
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);

@@ -1,6 +1,6 @@
 package ro.mpp2024;
 
-import ro.mpp2024.domain.Excursie;
+import ro.mpp2024.Excursie;
 
 import java.sql.SQLException;
 import java.time.LocalTime;

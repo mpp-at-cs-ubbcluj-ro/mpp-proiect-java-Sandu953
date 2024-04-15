@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="215.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.mpp2024.controller.LoginController">
+<AnchorPane prefHeight="215.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.mpp2024.gui.LoginController">
     <children>
         <Button fx:id="btnLogin" layoutX="130.0" layoutY="136.0" onAction="#handleLogin" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" text="Logare" />
         <TextField fx:id="getUser" layoutX="130.0" layoutY="55.0" />

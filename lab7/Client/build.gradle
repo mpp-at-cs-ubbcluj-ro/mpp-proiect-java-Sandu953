@@ -40,5 +40,5 @@ test {
 }
 
 compileJava {
-    options.compilerArgs << "-source" << "15" << "-target" << "15"
+    options.compilerArgs << "-source" << "16" << "-target" << "16"
 }

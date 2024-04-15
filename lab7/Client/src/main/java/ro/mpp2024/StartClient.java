@@ -1,5 +1,6 @@
 package ro.mpp2024;
 
+import javafx.application.Application;
 import ro.mpp2024.gui.*;
 import ro.mpp2024.IServices;
 import javafx.application.Application;
@@ -48,7 +49,7 @@ public class StartClient extends Application {
 
 
         FXMLLoader loader = new FXMLLoader(
-                getClass().getClassLoader().getResource("LoginW.fxml"));
+                getClass().getClassLoader().getResource("views/loginView.fxml"));
         Parent root=loader.load();
 
 
@@ -58,7 +59,7 @@ public class StartClient extends Application {
 
 
         FXMLLoader cloader = new FXMLLoader(
-                getClass().getClassLoader().getResource("ChatW.fxml"));
+                getClass().getClassLoader().getResource("views/rezervareView.fxml"));
         Parent croot=cloader.load();
 
 

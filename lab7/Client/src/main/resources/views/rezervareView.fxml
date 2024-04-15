@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="367.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.mpp2024.controller.RezervareController">
+<AnchorPane prefHeight="367.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.mpp2024.gui.RezervareController">
    <children>
       <TableView fx:id="tableView" layoutX="11.0" layoutY="64.0" prefHeight="277.0" prefWidth="426.0">
         <columns>
@@ -18,12 +18,12 @@
       <ComboBox fx:id="getOra1" layoutX="464.0" layoutY="269.0" prefHeight="25.0" prefWidth="64.0" />
       <ComboBox fx:id="getOra2" layoutX="545.0" layoutY="269.0" prefHeight="25.0" prefWidth="64.0" />
       <Label layoutX="464.0" layoutY="245.0" text="Interval Orar:" />
-      <Button fx:id="btnCauta" layoutX="461.0" layoutY="313.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="25.0" prefWidth="149.0" text="Cauta" />
+      <Button fx:id="btnCauta" onAction="#handleSearch" layoutX="461.0" layoutY="313.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="149.0" text="Cauta" />
       <TextField fx:id="getNume" layoutX="461.0" layoutY="66.0" promptText="Nume" />
       <TextField fx:id="getTelefon" layoutX="461.0" layoutY="96.0" promptText="Telefon" />
       <TextField fx:id="getLocuri" layoutX="461.0" layoutY="126.0" promptText="Locuri" />
-      <Button fx:id="btnRezerva" layoutX="461.0" onAction="#handleRezervare" layoutY="157.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Rezerva" />
-      <Button fx:id="btnLogout" layoutX="901.0" onAction="#handleLogout" layoutY="14.0" mnemonicParsing="false" text="Logout" />
+      <Button fx:id="btnRezerva" onAction="#handleRezervare" layoutX="461.0"  layoutY="157.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Rezerva" />
+      <Button fx:id="btnLogout" onAction="#logout" layoutX="901.0"  layoutY="14.0" mnemonicParsing="false" text="Logout" />
       <TableView fx:id="tableViewRez" layoutX="629.0" layoutY="70.0" prefHeight="266.0" prefWidth="341.0">
         <columns>
           <TableColumn fx:id="firma2" prefWidth="106.0" text="Firma Transport" />

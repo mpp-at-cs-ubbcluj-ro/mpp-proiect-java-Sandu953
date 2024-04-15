@@ -15,23 +15,23 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import ro.mpp2024.Agentie;
 import ro.mpp2024.Exception;
+import ro.mpp2024.IObserver;
 import ro.mpp2024.IServices;
 
 import java.io.IOException;
 
-public class LoginController {
+public class LoginController{
     public Button btnLogin;
     public TextField getUser;
     public PasswordField getPassword;
+
+    private RezervareController rezervareController;
 
     private IServices server;
 
     private Parent mainChatParent;
 
     private Agentie agentie;
-
-    private RezervareController rezervareController;
-
 
 
     public void setService(IServices server) {
@@ -43,8 +43,7 @@ public class LoginController {
 //        try {
 //            String user = getUser.getText();
 //            String pass = getPassword.getText();
-//
-//            if (server.handleLogin(user, pass,)) {
+//            if (server.handleLogin(user, pass, rezervareController)) {
 //                FXMLLoader fxmlLoader = new FXMLLoader(StartApplication.class.getResource("/views/rezervareView.fxml"));
 //                Parent root = (Parent) fxmlLoader.load();
 //                Stage stage = new Stage();
@@ -60,31 +59,41 @@ public class LoginController {
 //            MessageAlert.showErrorMessage(null, "Eroare la logare!" + e.getMessage());
 //            System.out.println(e.getMessage());
 //        }
-        //Parent root;
+//        Parent root;
         String nume = getUser.getText();
         String passwd = getPassword.getText();
         agentie = new Agentie(nume);
 
 
         try{
-            server.handleLogin(nume, passwd, rezervareController);
-            // Util.writeLog("User succesfully logged in "+crtUser.getId());
-            Stage stage=new Stage();
-            stage.setTitle("Window for " +agentie.getUsername());
-            stage.setScene(new Scene(mainChatParent));
+            if(server.handleLogin(nume, passwd, rezervareController)){
+                // Util.writeLog("User succesfully logged in "+crtUser.getId());
+                Stage stage=new Stage();
+                agentie.setId(server.getId(nume, passwd));
+                stage.setTitle("Window for " +agentie.getUsername());
+                stage.setScene(new Scene(mainChatParent));
 
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    rezervareController.logout();
-                    System.exit(0);
-                }
-            });
+                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        rezervareController.logout();
+                        System.exit(0);
+                    }
+                });
 
-            stage.show();
-            rezervareController.setUser(agentie);
-            ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
-
+                stage.show();
+                rezervareController.setUser(agentie);
+                //rezervareController.setServer(server);
+                ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("MPP chat");
+                alert.setHeaderText("Authentication failure");
+                alert.setContentText("Wrong username or password");
+                alert.showAndWait();
+            }
+            
         }   catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("MPP chat");
@@ -106,4 +115,6 @@ public class LoginController {
     public void setParent(Parent p) {
         mainChatParent=p;
     }
+
+
 }

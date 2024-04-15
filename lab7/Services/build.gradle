@@ -18,3 +18,7 @@ dependencies {
 //test {
 //    useJUnitPlatform()
 //}
+
+compileJava {
+    options.compilerArgs << "-target" << "16" << "-source" << "16"
+}

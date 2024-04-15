@@ -15,7 +15,7 @@ public class DTOUtils {
     }
     public static AgentieDTO getDTO(Agentie agentie){
         String user=agentie.getUsername();
-        return new AgentieDTO(user);
+        return new AgentieDTO(user,"");
     }
 
     public static Excursie getFromDTO(ExcursieDTO excursieDTO){
