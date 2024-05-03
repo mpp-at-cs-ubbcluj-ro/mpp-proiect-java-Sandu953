@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ro.mpp2024.proto.ProjectServerProxy;
 import ro.mpp2024.rpcprotocol.ServicesRpcProxy;
 
 import java.io.IOException;
@@ -44,7 +45,8 @@ public class StartClient extends Application {
         System.out.println("Using server IP " + serverIP);
         System.out.println("Using server port " + serverPort);
 
-        IServices server = new ServicesRpcProxy(serverIP, serverPort);
+        //IServices server = new ServicesRpcProxy(serverIP, serverPort);
+        IServices server = new ProjectServerProxy(serverIP, serverPort);
 
 
 

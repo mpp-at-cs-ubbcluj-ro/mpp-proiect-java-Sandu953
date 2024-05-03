@@ -11,5 +11,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="lab7.Services.main" />
     <orderEntry type="module" module-name="lab7.Model.main" />
+    <orderEntry type="library" name="Gradle: com.google.protobuf:protobuf-java:4.26.1" level="project" />
   </component>
 </module>

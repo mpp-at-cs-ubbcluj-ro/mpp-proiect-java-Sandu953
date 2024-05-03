@@ -131,11 +131,13 @@ public class RezervareController implements  IObserver {
     private void handleSearch(ActionEvent actionEvent) throws Exception {
         if (!getObiectiv.getText().isEmpty() && getOra1.getValue() != null && getOra2.getValue() != null) {
             modelExcursiiRezervari.clear();
-            Iterable<Excursie> excursii = server.getExcursiiBetweenHours(getObiectiv.getText(), LocalTime.of((Integer) getOra1.getValue(), 0), LocalTime.of((Integer) getOra2.getValue(), 0));
+            Iterable<Excursie> excursii = server.getExcursiiBetweenHours(getObiectiv.getText(), LocalTime.of((Integer)getOra1.getValue(), 0, 0).toString(), LocalTime.of((Integer) getOra2.getValue(), 0,0).toString());
             for (Excursie excursie : excursii) {
                 System.out.println(excursie.getObiectivTuristic());
             }
-            modelExcursiiRezervari.setAll(StreamSupport.stream(server.getExcursiiBetweenHours(getObiectiv.getText(), LocalTime.of((Integer) getOra1.getValue(), 0), LocalTime.of((Integer) getOra2.getValue(), 0)).spliterator(),
+            //modelExcursiiRezervari.setAll(StreamSupport.stream(server.getExcursiiBetweenHours(getObiectiv.getText(), LocalTime.of((Integer) getOra1.getValue(), 0), LocalTime.of((Integer) getOra2.getValue(), 0)).spliterator(),
+              //      false).collect(Collectors.toList()));
+            modelExcursiiRezervari.setAll(StreamSupport.stream(excursii.spliterator(),
                     false).collect(Collectors.toList()));
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

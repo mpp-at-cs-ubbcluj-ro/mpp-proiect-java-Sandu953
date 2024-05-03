@@ -43,6 +43,11 @@ public class ServicesImpl implements IServices {
         return ag.getId();
     }
 
+    @Override
+    public Iterable<Excursie> getExcursiiBetweenHours(String ora1, String ora2, String obiectiv) {
+        return excursieRepo.findExcursieBetweenHoursString(ora1, ora2, obiectiv);
+    }
+
     public synchronized void logout(Agentie user, IObserver client) throws Exception {
         Agentie ag = AgentieRepo.findByUser(user.getUsername());
         if(ag == null)

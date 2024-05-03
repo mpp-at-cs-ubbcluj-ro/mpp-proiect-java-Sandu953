@@ -218,6 +218,37 @@ public class ExcursieRepo implements IExcursieRepo {
         return excursii;
     }
 
+
+    public Iterable<Excursie> findExcursieBetweenHoursString(String ora1, String ora2, String obiectiv) {
+        logger.traceEntry("finding excursie with hours {} and {} ", ora1, ora2);
+        Connection con = dbUtils.getConnection();
+        List<Excursie> excursii = new ArrayList<>();
+        try (PreparedStatement preStmt = con.prepareStatement("SELECT Excursie.*, (Excursie.numar_locuri - COALESCE(SUM(Rezervare.numar_locuri), 0)) AS locuri_libere FROM Excursie LEFT JOIN Rezervare ON Excursie.id = Rezervare.excursie WHERE ora_plecare BETWEEN ? AND ? AND obiectiv = ? GROUP BY Excursie.id")) {
+            preStmt.setTime(1, java.sql.Time.valueOf(ora1));
+            preStmt.setTime(2, java.sql.Time.valueOf(ora2));
+            preStmt.setString(3, obiectiv);
+            try (ResultSet result = preStmt.executeQuery()) {
+                while (result.next()) {
+                    int id = result.getInt("id");
+                    String obiectiv2 = result.getString("obiectiv");
+                    String firma_transport = result.getString("firma_transport");
+                    java.sql.Time ora_plecare = result.getTime("ora_plecare");
+                    int pret = result.getInt("pret");
+                    int numar_locuri = result.getInt("numar_locuri");
+                    int locuri_libere = result.getInt("locuri_libere");
+                    Excursie ex = new Excursie(obiectiv2, firma_transport, ora_plecare.toLocalTime(), pret, numar_locuri, locuri_libere);
+                    ex.setId((long) id);
+                    excursii.add(ex);
+                }
+            }
+        } catch (SQLException ex) {
+            logger.error(ex);
+            System.out.println("Error DB " + ex);
+        }
+        logger.traceExit();
+        return excursii;
+    }
+
     public Integer findLocuriLibere(int id) throws SQLException {
         logger.traceEntry("finding locuri libere for excursie with id {} ", id);
         Connection con = dbUtils.getConnection();

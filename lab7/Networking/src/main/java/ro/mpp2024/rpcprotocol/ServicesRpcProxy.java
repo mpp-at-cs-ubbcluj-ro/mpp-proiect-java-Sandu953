@@ -259,6 +259,11 @@ public class ServicesRpcProxy implements IServices {
         return (long) response.data();
     }
 
+    @Override
+    public Iterable<Excursie> getExcursiiBetweenHours(String text, String string, String string1) {
+        return null;
+    }
+
     private class ReaderThread implements Runnable{
         public void run() {
             while(!finished){

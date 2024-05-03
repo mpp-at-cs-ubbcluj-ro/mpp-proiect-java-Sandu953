@@ -1,5 +1,7 @@
 package ro.mpp2024;
 
+import ro.mpp2024.proto.ConcurrentServerProto;
+import ro.mpp2024.proto.RPCConcurrentServerProto;
 import ro.mpp2024.utils.ServerException;
 import ro.mpp2024.utils.AbstractServer;
 import java.io.IOException;
@@ -30,18 +32,22 @@ public class StartRpcServer {
             System.err.println("Wrong  Port Number"+nef.getMessage());
             System.err.println("Using default port "+defaultPort);
         }
-        System.out.println("Starting server on port: "+ServerPort);
-        AbstractServer server = new RpcConcurrentServer(ServerPort, serverImpl);
-        try {
-            server.start();
-        } catch (ServerException e) {
-            System.err.println("Error starting the server" + e.getMessage());
-        }finally {
-            try {
-                server.stop();
-            }catch(ServerException e){
-                System.err.println("Error stopping server "+e.getMessage());
-            }
-        }
+        System.out.println("Starting server on port: "+55555);
+
+        //AbstractServer server = new RpcConcurrentServer(ServerPort, serverImpl);
+        //AbstractServer server = new RpcConcurrentServer(ServerPort, serverImpl);
+        RPCConcurrentServerProto server = new RPCConcurrentServerProto("127.0.0.1",55555, serverImpl);
+        server.start();
+//        try {
+//            server.start();
+//        } catch (ServerException e) {
+//            System.err.println("Error starting the server" + e.getMessage());
+//        }finally {
+//            try {
+//                server.stop();
+//            }catch(ServerException e){
+//                System.err.println("Error stopping server "+e.getMessage());
+//            }
+//        }
     }
 }

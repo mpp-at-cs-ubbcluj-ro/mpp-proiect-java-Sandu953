@@ -11,4 +11,6 @@ public interface IServices {
     Integer getFreeSeats(int id) throws SQLException, Exception ;
     void addRezervare(long id, long ex, String nume, String telefon, int bilet) throws Exception;
     long getId(String username, String password) throws Exception;
+
+    Iterable<Excursie> getExcursiiBetweenHours(String text, String string, String string1);
 }

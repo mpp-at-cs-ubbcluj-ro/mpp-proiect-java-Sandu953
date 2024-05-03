@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+option java_package = "ro.mpp2024.proto.Org.Example";
+
+message Agentie {
+  int64 id = 1;
+  string username = 2;
+  string pass = 3;
+}
+
+message Excursie {
+  int64 id = 1;
+  string obiectiv_turistic = 2;
+  string nume_transport = 3;
+  string ora_plecare = 4;
+  int32 pret = 5;
+  int32 nr_locuri = 6;
+  int32 locuri_libere = 7;
+}
+
+message Rezervare {
+  int64 id = 1;
+  int64 excursie = 2;
+  string nume_client = 3;
+  string nr_telefon = 4;
+  int32 nr_locuri = 5;
+}
+
+message Request {
+  enum RequestType {
+    LOGIN = 0;
+    LOGOUT = 1;
+    UPDATE_SEARCH = 2;
+    GET_EXCURSII = 3;
+    GET_EXCURSII_ORE = 4;
+    GET_FREE_SEATS = 5;
+    ADD_REZ = 6;
+    GET_ID = 7;
+  }
+
+  RequestType type = 1;
+
+  oneof data {
+    Agentie agentie = 2;
+    Excursie excursie = 3;
+    Rezervare rezervare = 4;
+  }
+}
+
+message Response {
+  enum ResponseType {
+    OK = 0;
+    ERROR = 1;
+    UPDATE_SEARCH = 2;
+    FRIEND_LOGGED_IN = 3;
+    FRIEND_LOGGED_OUT = 4;
+    EXCURSII = 5;
+    EXCURSII_ORE = 6;
+    ADDED_REZERVATION = 7;
+  }
+
+  ResponseType type = 1;
+
+  oneof data {
+    Agentie agentie = 2;
+    Excursie excursie = 3;
+    Rezervare rezervare = 4;
+  }
+  repeated Excursie Excursii = 5;
+  string error = 6;
+}
