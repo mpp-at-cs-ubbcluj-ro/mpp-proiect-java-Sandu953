@@ -196,7 +196,10 @@ public class ProjectServerProxy implements IServices {
     @Override
     public Iterable<Excursie> getExcursiiBetweenHours(String obiectiv, LocalTime ora1, LocalTime ora2) throws Exception {
         String oreP = ora1.toString() + "___" + ora2.toString();
+        System.out.println("1234");
+        System.out.println(oreP + " " + obiectiv);
         System.out.println("Get excursii ora request ...");
+
         ProtocolProto.Request req = ProtocolProto.Request.newBuilder()
                 .setType(ProtocolProto.Request.RequestType.GET_EXCURSII_ORE)
                 .setExcursie(ProtocolProto.Excursie.newBuilder()
@@ -275,9 +278,10 @@ public class ProjectServerProxy implements IServices {
     }
 
     @Override
-    public Iterable<Excursie> getExcursiiBetweenHours(String ora1, String ora2, String obiectiv) {
+    public Iterable<Excursie> getExcursiiBetweenHours( String obiectiv,String ora1, String ora2) {
         String oreP = ora1 + "___" + ora2;
         System.out.println("Get excursii ora request ...");
+        System.out.println(oreP + " " + obiectiv);
         ProtocolProto.Request req = ProtocolProto.Request.newBuilder()
                 .setType(ProtocolProto.Request.RequestType.GET_EXCURSII_ORE)
                 .setExcursie(ProtocolProto.Excursie.newBuilder()
@@ -294,13 +298,15 @@ public class ProjectServerProxy implements IServices {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
             LocalTime localTime = LocalTime.parse(timeString, formatter);
 
-            excursii.add(new Excursie(
+            Excursie ex = new Excursie(
                     excursie.getObiectivTuristic(),
                     excursie.getNumeTransport(),
                     localTime,
                     excursie.getPret(),
                     excursie.getNrLocuri(),
-                    excursie.getLocuriLibere()));
+                    excursie.getLocuriLibere());
+            ex.setId(excursie.getId());
+            excursii.add(ex);
         }
         return excursii;
     }

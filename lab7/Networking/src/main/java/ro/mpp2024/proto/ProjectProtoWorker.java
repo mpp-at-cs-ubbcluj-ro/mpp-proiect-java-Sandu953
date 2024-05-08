@@ -136,6 +136,9 @@ public class ProjectProtoWorker implements IObserver {
                     String ora1 = parts[0];
                     String ora2 = parts[1];
 
+                    System.out.println(ora1);
+                    System.out.println(ora2);
+
                     String timeString1 =  ora1; // Example time string
                     String timeString2 =  ora2; // Example time string
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");

@@ -181,6 +181,10 @@ public class RezervareController implements  IObserver {
 //            modelExcursiiRezervari.clear();
 //            modelExcursiiRezervari.setAll(StreamSupport.stream(server.getExcursiiBetweenHours(getObiectiv.getText(), LocalTime.of((Integer) getOra1.getValue(), 0), LocalTime.of((Integer) getOra2.getValue(), 0)).spliterator(),
 //                    false).collect(Collectors.toList()));
+            modelExcursii.clear();
+            initModelExcursii();
+            modelExcursiiRezervari.clear();
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText("Success");
