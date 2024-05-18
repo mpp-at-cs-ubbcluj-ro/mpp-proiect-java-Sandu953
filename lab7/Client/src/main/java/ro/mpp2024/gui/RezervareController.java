@@ -85,7 +85,7 @@ public class RezervareController implements  IObserver {
                     setStyle("");
                 } else {
                     try {
-                        if (server.getFreeSeats(excursie.getId().intValue()) == 0) {
+                        if (server.getFreeSeats((int)excursie.getId()) == 0) {
                             // If there are no available places, set the row style to red
                             setStyle("-fx-background-color: #ff0000;");
                         } else {
@@ -168,7 +168,7 @@ public class RezervareController implements  IObserver {
         Excursie excursie = tableViewRez.getSelectionModel().getSelectedItem();
         try {
             //System.out.println(serviceExcursie.getFreeSeats(excursie.getId().intValue()));
-            if (Integer.parseInt(getLocuri.getText()) > server.getFreeSeats(excursie.getId().intValue())) {
+            if (Integer.parseInt(getLocuri.getText()) > server.getFreeSeats((int)excursie.getId())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("An error has occured");
@@ -177,7 +177,7 @@ public class RezervareController implements  IObserver {
                 return;
             }
             server.addRezervare(agentie.getId(),excursie.getId(), getNume.getText(), getTelefon.getText(), Integer.parseInt(getLocuri.getText()));
-            System.out.println(server.getFreeSeats(excursie.getId().intValue()));
+            System.out.println(server.getFreeSeats((int)excursie.getId()));
 //            modelExcursiiRezervari.clear();
 //            modelExcursiiRezervari.setAll(StreamSupport.stream(server.getExcursiiBetweenHours(getObiectiv.getText(), LocalTime.of((Integer) getOra1.getValue(), 0), LocalTime.of((Integer) getOra2.getValue(), 0)).spliterator(),
 //                    false).collect(Collectors.toList()));

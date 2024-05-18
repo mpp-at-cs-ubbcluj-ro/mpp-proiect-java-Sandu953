@@ -2,7 +2,7 @@ package ro.mpp2024;
 
 import java.time.LocalTime;
 
-public class Excursie extends Entity<Long> {
+public class Excursie extends Entitate {
     private String obiectivTuristic;
     private String numeTransport;
     private LocalTime oraPlecare;

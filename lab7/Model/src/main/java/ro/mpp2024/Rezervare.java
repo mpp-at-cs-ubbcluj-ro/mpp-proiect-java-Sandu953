@@ -1,6 +1,6 @@
 package ro.mpp2024;
 
-public class Rezervare extends Entity<Long> {
+public class Rezervare extends Entitate {
     private long excursie;
     private String numeClient;
     private String nrTelefon;

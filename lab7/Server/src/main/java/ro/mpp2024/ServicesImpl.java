@@ -9,12 +9,12 @@ import java.util.concurrent.Executors;
 
 public class ServicesImpl implements IServices {
 
-    private AgentieRepo agentieRepo;
+    private AgentieORMRepo agentieRepo;
     private ExcursieRepo excursieRepo;
     private RezervareRepo rezervareRepo;
     private Map<Long, IObserver> loggedClients;
 
-    public ServicesImpl(AgentieRepo agentieRepo, ExcursieRepo excursieRepo, RezervareRepo rezervareRepo) {
+    public ServicesImpl(AgentieORMRepo agentieRepo, ExcursieRepo excursieRepo, RezervareRepo rezervareRepo) {
         this.agentieRepo = agentieRepo;
         this.excursieRepo = excursieRepo;
         this.rezervareRepo = rezervareRepo;
@@ -24,7 +24,7 @@ public class ServicesImpl implements IServices {
     @Override
     public synchronized boolean handleLogin(String username, String password, IObserver client) throws Exception {
         Agentie agentie;
-        agentie = AgentieRepo.findBy(username, password);
+        agentie = agentieRepo.findBy(username, password);
         if (agentie != null) {
             System.out.println(agentie.getId());
             if (loggedClients.get(agentie.getId()) != null)
@@ -39,7 +39,7 @@ public class ServicesImpl implements IServices {
 
 
     public long getId(String username, String password) {
-        Agentie ag = AgentieRepo.findBy(username, password);
+        Agentie ag = agentieRepo.findBy(username, password);
         return ag.getId();
     }
 
@@ -49,7 +49,7 @@ public class ServicesImpl implements IServices {
     }
 
     public synchronized void logout(Agentie user, IObserver client) throws Exception {
-        Agentie ag = AgentieRepo.findByUser(user.getUsername());
+        Agentie ag = agentieRepo.findByUser(user.getUsername());
         if(ag == null)
             throw new Exception("User " + user.getId() + " is not logged in.");
         IObserver localClient = loggedClients.remove(ag.getId());

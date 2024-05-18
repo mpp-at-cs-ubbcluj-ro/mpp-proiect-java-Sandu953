@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.zsoltfabok:sqlite-dialect:1.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="com.zsoltfabok" artifactId="sqlite-dialect" version="1.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zsoltfabok/sqlite-dialect/1.0/22e2ceb3e0e90ab8ce84989d31663edb28d0b776/sqlite-dialect-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zsoltfabok/sqlite-dialect/1.0/16af9536942595d19eb82e157d81a31af311c749/sqlite-dialect-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

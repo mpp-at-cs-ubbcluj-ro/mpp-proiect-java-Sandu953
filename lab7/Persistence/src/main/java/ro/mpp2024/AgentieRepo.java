@@ -50,7 +50,7 @@ public class AgentieRepo implements IAgentieRepo {
         logger.traceEntry("saving agentie {} ", entity);
         Connection con = dbUtils.getConnection();
         try (PreparedStatement preStmt = con.prepareStatement("insert into Agentie values (?,?)")) {
-            preStmt.setInt(1, entity.getId().intValue());
+            preStmt.setInt(1,(int) entity.getId());
             preStmt.setString(2, entity.getUsername());
             //preStmt.setString(3,criptare(entity.getPassword(),secretKey));
             int result = preStmt.executeUpdate();

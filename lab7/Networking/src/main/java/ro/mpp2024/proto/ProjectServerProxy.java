@@ -179,7 +179,10 @@ public class ProjectServerProxy implements IServices {
         List<Excursie> excursii = new ArrayList<>();
         for (ProtocolProto.Excursie excursie : response.getExcursiiList()) {
             String timeString = excursie.getOraPlecare(); // Example time string
+            timeString = timeString + ":00";
+            //timeString = timeString;
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
             LocalTime localTime = LocalTime.parse(timeString, formatter);
 
             excursii.add(new Excursie(
@@ -295,6 +298,8 @@ public class ProjectServerProxy implements IServices {
         for (ProtocolProto.Excursie excursie : response.getExcursiiList()) {
 
             String timeString = excursie.getOraPlecare(); // Example time string
+            timeString = timeString + ":00";
+            //timeString = timeString;
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
             LocalTime localTime = LocalTime.parse(timeString, formatter);
 

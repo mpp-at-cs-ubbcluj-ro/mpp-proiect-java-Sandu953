@@ -1,5 +1,9 @@
 package ro.mpp2024;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ro.mpp2024.proto.ConcurrentServerProto;
 import ro.mpp2024.proto.RPCConcurrentServerProto;
 import ro.mpp2024.utils.ServerException;
@@ -10,6 +14,23 @@ import ro.mpp2024.utils.RpcConcurrentServer;
 
 public class StartRpcServer {
     private static int defaultPort=55555;
+    private static SessionFactory sessionFactory;
+
+
+    private static void setUp() {
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure()
+                .build();
+        sessionFactory = new MetadataSources(registry)
+                .buildMetadata()
+                .buildSessionFactory();
+    }
+
+    private static void tearDown() {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
+    }
     public static void main(String[] args) {
         // UserRepository agentieRepo=new UserRepositoryMock();
         Properties serverProps=new Properties();
@@ -21,7 +42,11 @@ public class StartRpcServer {
             System.err.println("Cannot find chatserver.properties "+e);
             return;
         }
-        AgentieRepo agentieRepo=new AgentieRepo(serverProps);
+
+        setUp();
+
+        //AgentieRepo agentieRepo=new AgentieRepo(serverProps);
+        AgentieORMRepo agentieRepo=new AgentieORMRepo(sessionFactory);
         ExcursieRepo excursieRepo=new ExcursieRepo(serverProps);
         RezervareRepo rezervareRepo=new RezervareRepo(serverProps, excursieRepo);
         IServices serverImpl=new ServicesImpl(agentieRepo, excursieRepo, rezervareRepo);
@@ -37,17 +62,11 @@ public class StartRpcServer {
         //AbstractServer server = new RpcConcurrentServer(ServerPort, serverImpl);
         //AbstractServer server = new RpcConcurrentServer(ServerPort, serverImpl);
         RPCConcurrentServerProto server = new RPCConcurrentServerProto("127.0.0.1",55555, serverImpl);
-        server.start();
-//        try {
-//            server.start();
-//        } catch (ServerException e) {
-//            System.err.println("Error starting the server" + e.getMessage());
-//        }finally {
-//            try {
-//                server.stop();
-//            }catch(ServerException e){
-//                System.err.println("Error stopping server "+e.getMessage());
-//            }
-//        }
+        //server.start();
+        try {
+            server.start();
+        } finally {
+           tearDown();
+        }
     }
 }

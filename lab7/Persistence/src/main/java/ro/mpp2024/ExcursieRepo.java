@@ -47,7 +47,7 @@ public class ExcursieRepo implements IExcursieRepo {
         logger.traceEntry("saving excursie {} ", entity);
         Connection con = dbUtils.getConnection();
         try (PreparedStatement preStmt = con.prepareStatement("insert into Excursie values (?,?,?,?,?,?)")) {
-            preStmt.setInt(1, entity.getId().intValue());
+            preStmt.setInt(1, (int)entity.getId());
             preStmt.setString(2, entity.getObiectivTuristic());
             preStmt.setString(3, entity.getNumeTransport());
             preStmt.setTime(4, java.sql.Time.valueOf(entity.getOraPlecare()));
