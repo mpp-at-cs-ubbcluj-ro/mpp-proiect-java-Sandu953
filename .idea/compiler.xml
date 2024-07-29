@@ -5,6 +5,9 @@
       <module name="lab1" target="18" />
       <module name="lab1.main" target="18" />
       <module name="lab1.test" target="18" />
+      <module name="lab12" target="18" />
+      <module name="lab12.main" target="18" />
+      <module name="lab12.test" target="18" />
       <module name="lab7" target="18" />
       <module name="lab7.Client" target="18" />
       <module name="lab7.Client.main" target="18" />
